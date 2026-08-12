@@ -9,7 +9,7 @@ function json(res, status, body) { res.writeHead(status, { 'Content-Type': 'appl
 async function shopifyOrders() {
   const shop = process.env.SHOPIFY_SHOP, token = process.env.SHOPIFY_ADMIN_ACCESS_TOKEN;
   if (!shop || !token) throw new Error('Shopify connection is not configured. Add SHOPIFY_SHOP and SHOPIFY_ADMIN_ACCESS_TOKEN to .env.');
-  const query = `query { orders(first: 25, query: "financial_status:paid", reverse: true, sortKey: PROCESSED_AT) { nodes { id name processedAt shippingAddress { name phone address1 address2 city province provinceCode zip country } lineItems(first: 100) { nodes { title sku quantity originalUnitPriceSet { shopMoney { amount } } discountedUnitPriceSet { shopMoney { amount } } } } } } }`;
+  const query = `query { orders(first: 25, query: "financial_status:paid", reverse: true, sortKey: PROCESSED_AT) { nodes { id name processedAt shippingAddress { name phone address1 address2 city province provinceCode zip country } lineItems(first: 100) { nodes { title sku quantity variant { inventoryItem { harmonizedSystemCode } } originalUnitPriceSet { shopMoney { amount } } discountedUnitPriceSet { shopMoney { amount } } } } } } }`;
   const response = await fetch(`https://${shop}/admin/api/2026-07/graphql.json`, { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Shopify-Access-Token': token }, body: JSON.stringify({ query }) });
   const payload = await response.json(); if (!response.ok || payload.errors) throw new Error(payload.errors?.[0]?.message || `Shopify request failed (${response.status}).`); return payload.data.orders.nodes;
 }
