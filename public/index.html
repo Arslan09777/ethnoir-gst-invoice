@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Ethnoir GST Invoice</title><link rel="stylesheet" href="/public/styles.css">
+</head>
+<body>
+  <header><div><strong>Ethnoir</strong><span>GST Invoice</span></div><div><button id="ordersButton">Import paid order</button> <button id="settingsButton">Settings</button></div></header>
+  <main>
+    <section id="calculator" class="card">
+      <p class="eyebrow">INVOICE CHECKER</p><h1>Correct GST, even after discount.</h1>
+      <p class="intro">For apparel HSN 61/62, the app uses the discounted taxable value per piece: up to Rs. 2,500 = 5%; above Rs. 2,500 = 18%.</p>
+      <div class="form-grid">
+        <label>Product / invoice line<input id="product" value="Yellow Embroidered Short Kurta"></label>
+        <label>HSN code<input id="hsn" value="62113210" inputmode="numeric"></label>
+        <label>Inclusive selling price (Rs.)<input id="price" value="2599" inputmode="decimal"></label>
+        <label>Discount (Rs.)<input id="discount" value="0" inputmode="decimal"></label>
+        <label>Quantity<input id="quantity" value="1" inputmode="numeric"></label>
+        <label>Buyer state<select id="buyerState"><option value="24">Gujarat - same state</option><option value="06">Haryana - other state</option><option value="other">Other state</option></select></label>
+      </div>
+      <button class="primary" id="calculate">Create draft invoice</button>
+    </section>
+    <section id="orders" class="card hidden"><div class="section-heading"><div><p class="eyebrow">SHOPIFY</p><h2>Paid orders</h2></div><button id="closeOrders">Close</button></div><p id="orderStatus">Checking connection...</p><div id="orderList"></div></section>
+    <section id="result" class="card result hidden" aria-live="polite"></section>
+    <section id="settings" class="card hidden">
+      <div class="section-heading"><div><p class="eyebrow">STORE SETTINGS</p><h2>Business and invoice details</h2></div><button id="closeSettings">Close</button></div>
+      <div class="form-grid">
+        <label>Legal business name<input id="businessName" value="OPUS APPARELS"></label>
+        <label>GSTIN<input id="gstin" value="24AAGFO1864Q1ZR"></label>
+        <label>State code<input id="sellerState" value="24"></label>
+        <label>Invoice prefix<input id="invoicePrefix" value="ET-"></label>
+        <label>Business address<textarea id="address">Block Laxmi Narayan Industrial Estate, BRC Compound, Surat 394210, Gujarat</textarea></label>
+        <label>Logo<input id="logo" type="file" accept="image/*"><small>Optional - upload whenever ready.</small></label>
+        <label>Product HSN mappings<textarea id="hsnMappings" placeholder="SKU=62113210&#10;ET-KU1004_2XL=62113210"></textarea><small>One SKU=HSN entry per line. Imported orders use these codes.</small></label>
+      </div>
+      <button class="primary" id="saveSettings">Save settings on this device</button><p id="saveMessage"></p>
+    </section>
+  </main>
+  <template id="invoiceTemplate"><article class="invoice"><div class="invoice-actions no-print"><button class="primary print-button">Print / Save PDF</button></div><div class="invoice-head"><div><img class="logo hidden" alt="Business logo"><h2 class="business"></h2><p class="address"></p><p>GSTIN: <b class="gstin"></b></p></div><div><p class="eyebrow">TAX INVOICE</p><h2 class="invoice-number"></h2><p class="date"></p><p class="order-number"></p></div></div><table><thead><tr><th>Product / HSN</th><th>Qty</th><th>Taxable value</th><th>GST</th><th>Total</th></tr></thead><tbody></tbody></table><div class="totals"></div><p class="note">GST rate is determined from discounted taxable value per piece. Please validate final tax treatment with your CA.</p></article></template>
+  <script src="/public/app.js"></script>
+</body></html>
+
