@@ -17,6 +17,9 @@
         <label>Discount (Rs.)<input id="discount" value="0" inputmode="decimal"></label>
         <label>Quantity<input id="quantity" value="1" inputmode="numeric"></label>
         <label>Buyer state<select id="buyerState"><option value="24">Gujarat - same state</option><option value="06">Haryana - other state</option><option value="other">Other state</option></select></label>
+        <label>Customer name<input id="customerName" value="Pramod Joshi"></label>
+        <label>Customer phone<input id="customerPhone" value=""></label>
+        <label class="full-width">Shipping address<textarea id="shippingAddress">3 L 602 Orris Aster Court Premier, Sector 85, Gurgaon 122004, Haryana, India</textarea></label>
       </div>
       <button class="primary" id="calculate">Create draft invoice</button>
     </section>
@@ -36,7 +39,7 @@
       <button class="primary" id="saveSettings">Save settings on this device</button><p id="saveMessage"></p>
     </section>
   </main>
-  <template id="invoiceTemplate"><article class="invoice"><div class="invoice-actions no-print"><button class="primary print-button">Print / Save PDF</button></div><div class="invoice-head"><div><img class="logo hidden" alt="Business logo"><h2 class="business"></h2><p class="address"></p><p>GSTIN: <b class="gstin"></b></p></div><div><p class="eyebrow">TAX INVOICE</p><h2 class="invoice-number"></h2><p class="date"></p><p class="order-number"></p></div></div><table><thead><tr><th>Product / HSN</th><th>Qty</th><th>Taxable value</th><th>GST</th><th>Total</th></tr></thead><tbody></tbody></table><div class="totals"></div><p class="note">GST rate is determined from discounted taxable value per piece. Please validate final tax treatment with your CA.</p></article></template>
+  <template id="invoiceTemplate"><article class="invoice"><div class="invoice-actions no-print"><button class="primary print-button">Print / Save PDF</button></div><div class="invoice-brand"><img class="logo" alt="Ethnoir logo"><p class="eyebrow">TAX INVOICE</p></div><div class="invoice-top-grid"><section><h3>Shipping Address</h3><p class="customer-name"></p><p class="customer-address"></p><p class="customer-phone"></p><p class="customer-state"></p></section><section><h3>Sold By</h3><p class="business"></p><p class="address"></p><p>State Code: <b class="seller-state"></b></p><p>GSTIN: <b class="gstin"></b></p></section><section><h3>Invoice Details</h3><p>Invoice No: <b class="invoice-number"></b></p><p>Invoice Date: <b class="date"></b></p><p>Order No: <b class="order-number"></b></p><p>Order Date: <b class="order-date"></b></p></section></div><table><thead><tr><th>S.No. / Product</th><th>HSN</th><th>Qty</th><th>Unit price</th><th>Discount</th><th>Taxable value</th><th>GST</th><th>Total</th></tr></thead><tbody></tbody></table><div class="totals"></div><p class="note">Whether tax is payable under reverse charge: No</p><div class="signature">Authorized Signature for <b class="business-sign"></b></div></article></template>
   <script src="/public/app.js"></script>
 </body></html>
 
